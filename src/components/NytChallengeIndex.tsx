@@ -1,7 +1,7 @@
 import React, {FunctionComponent} from 'react';
 
 type acceptedProps = {
-    result: any,
+    result: [],
     pageNumber: any,
 }
 

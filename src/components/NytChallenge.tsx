@@ -7,7 +7,7 @@ type NytState ={
    search?: string,
    startDate?: string,
    endDate?: string,
-   result: any,
+   result: [],
   //  pageNumber: number,
    
 };
