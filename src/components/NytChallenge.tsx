@@ -54,10 +54,18 @@ class NytChallenge extends React.Component <{},NytState>{
         .catch(err => console.log(err));
     }
 
-    changePageNumber = (event:{}, direction:string) => {
+    
+    handleSubmit = (event:any) => {
+            //need to add prevent default but getting an error because  of the type
+            event.preventDefault();
+            this.setState({pageNumber:0});
+            this.fetchResults();
+    };
+    changePageNumber = (event:any, direction:any) => {
+      event.preventDefault();
         if(direction === 'down') {
           if(this.state.pageNumber > 0) {
-            this.setState({pageNumber: this.state.pageNumber + 1});
+            this.setState({pageNumber: this.state.pageNumber - 1});
               this.fetchResults();
             }
           }
@@ -69,12 +77,6 @@ class NytChallenge extends React.Component <{},NytState>{
       };
      
 
-    handleSubmit = (event:{}) => {
-        //need to add prevent default but getting an error because  of the type
-        this.setState({pageNumber:0});
-        this.fetchResults();
-      };
-
     componentWillMount(){
         this.fetchResults();
     }
@@ -83,24 +85,26 @@ class NytChallenge extends React.Component <{},NytState>{
 
         return(
             <div className="main">
-            <div className="mainDiv">
-                <form onSubmit={(e) => this.handleSubmit(e)}>
-                    <span>Enter a single search term:</span>
-                    <input type="text" name="search" onChange={(e) => this.setState({ search: e.target.value})} required />
-                    <br />
-                    <span>Enter a start date: </span>
-                    <input type="date" name="startDate" pattern="[0-9]{8}" onChange={(e) => this.setState({startDate:e.target.value})} />
-                    <br />
-                    <span>Enter an end date: </span>
-                    <input type="date" name="endDate" pattern="[0-9]{8}" onChange={(e) => this.setState({endDate:e.target.value})} />
-                    <br />
-                    <button className="submit">Submit search</button>
-                </form> 
-                  {
-                    this.state.result.length > 0 ? <NytChallengeIndex result={ this.state.result } pageNumber={ this.state.pageNumber } /> : null 
-                  }
+              <div className="mainDiv">
+                <hr />
+                <h1>Welcome to New York Times</h1>
+                  <form onSubmit={(e) => this.handleSubmit(e)}>
+                      <span>Enter a single search term:</span> <br />
+                      <input type="text" name="search" onChange={(e) => this.setState({ search: e.target.value})} required />
+                      <br />
+                      <span>Enter a start date: </span> <br />
+                      <input type="date" name="startDate" pattern="[0-9]{8}" onChange={(e) => this.setState({startDate:e.target.value})} />
+                      <br />
+                      <span>Enter an end date: </span> <br />
+                      <input type="date" name="endDate" pattern="[0-9]{8}" onChange={(e) => this.setState({endDate:e.target.value})} />
+                      <br /> <br />
+                      <button className="submit">Submit search</button>
+                  </form> 
+                    {
+                      this.state.result.length > 0 ? <NytChallengeIndex result={ this.state.result } pageNumber={ this.state.pageNumber } /> : null 
+                    }
+              </div>
             </div>
-        </div>
         )
     }
 }

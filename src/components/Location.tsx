@@ -81,9 +81,10 @@ class Location extends React.Component <acceptedProps,LocationState>{
         return(
             <div className="main">
                 <div className="mainDiv">
+                        <hr />
                         <h2>Longitude: {this.state.longitude}</h2>
                         <h2>Latitude: {this.state.latitude}</h2>
-
+                        <hr />
                         <h1>Your Current Weather Situation</h1>
                         {this.currentLocation()}
                         <Weather temp ={this.state.temp} humidity={this.state.humidity} pressure={this.state.pressure } temp_max={this.state.temp_max } temp_min={this.state.temp_min }/>
