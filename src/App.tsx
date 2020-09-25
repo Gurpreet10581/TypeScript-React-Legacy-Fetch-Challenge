@@ -3,6 +3,7 @@ import './App.css';
 import Clock from './components/Clock';
 // import Weather from './components/Weather';
 import Location from './components/Location';
+import NytChallenge from './components/NytChallenge';
 
 
 let testProp: string = 'Current Time'
@@ -15,6 +16,7 @@ const App: React.FunctionComponent = () => {
       <div className="verticalCenter">
             <Location />
             <Clock testProp={testProp} optionalProp={optionalProp} />
+            <NytChallenge />
 
       </div>
     </div>
