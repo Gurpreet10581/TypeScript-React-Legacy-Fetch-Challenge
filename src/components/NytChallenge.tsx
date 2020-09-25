@@ -1,12 +1,14 @@
 import React from 'react';
 import NytChallengeIndex from './NytChallengeIndex';
 
+
+let pageNumber=0;
 type NytState ={
    search?: string,
    startDate?: string,
    endDate?: string,
    result: any,
-   pageNumber: number,
+  //  pageNumber: number,
    
 };
 
@@ -19,7 +21,7 @@ class NytChallenge extends React.Component <{},NytState>{
             startDate:'',
             endDate: '',
             result: [],
-            pageNumber:0,
+            // pageNumber:0,
 
         };
     }
@@ -29,7 +31,7 @@ class NytChallenge extends React.Component <{},NytState>{
         const baseURL:string = "https://api.nytimes.com/svc/search/v2/articlesearch.json"; 
         const nytKey = "iUMyE5HDOtgIXwHDpj1WLx6EpI9AzuXU"; 
     
-        let url: string = `${baseURL}?api-key=${nytKey}&page=${this.state.pageNumber}&q=${this.state.search}`;
+        let url: string = `${baseURL}?api-key=${nytKey}&page=${pageNumber}&q=${this.state.search}`;
         console.log('URL:', url);
       
         if (this.state.startDate) {
@@ -58,20 +60,20 @@ class NytChallenge extends React.Component <{},NytState>{
     handleSubmit = (event:any) => {
             
             event.preventDefault();
-            this.setState({pageNumber:0});
+            pageNumber=0;
             this.fetchResults();
     };
     changePageNumber = (event:any, direction:any) => {
       event.preventDefault();
         if(direction === 'down') {
-          if(this.state.pageNumber > 0) {
-            this.setState({pageNumber: this.state.pageNumber - 1});
+          if(pageNumber > 0) {
+            pageNumber= pageNumber - 1;
               this.fetchResults();
             }
           }
      
       if(direction === 'up') {
-        this.setState({pageNumber:this.state.pageNumber + 1});
+        pageNumber=pageNumber + 1;
         this.fetchResults();
         }
       };
