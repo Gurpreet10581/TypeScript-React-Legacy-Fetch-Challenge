@@ -1,9 +1,6 @@
 import React, {FunctionComponent} from 'react';
 
 type acceptedProps = {
-    search?: string,
-    startDate?: string,
-    endDate?: string,
     result: any,
     pageNumber: any,
 }
@@ -13,6 +10,10 @@ const NytChallengeIndex: FunctionComponent <(acceptedProps)> = props =>{
     return(
         <div>
             <div>
+                <div>
+                    <button onClick={(e) =>  props.pageNumber(e, 'down')}>Previous 10</button>
+                    <button onClick={(e) => props.pageNumber(e, 'up')}>Next 10</button>
+                </div>
                 { props.result.map((result:any) => {
                 return (
                     <div key={result._id}>
@@ -31,7 +32,7 @@ const NytChallengeIndex: FunctionComponent <(acceptedProps)> = props =>{
                 )
                 })}
                 <div>
-                    <button onClick={(e) => props.pageNumber(e, 'down')}>Previous 10</button>
+                    <button onClick={(e) =>  props.pageNumber(e, 'down')}>Previous 10</button>
                     <button onClick={(e) => props.pageNumber(e, 'up')}>Next 10</button>
                 </div>
             </div>

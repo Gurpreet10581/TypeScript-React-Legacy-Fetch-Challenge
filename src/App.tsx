@@ -14,6 +14,9 @@ const App: React.FunctionComponent = () => {
   return (
     <div className="App">
       <div className="verticalCenter">
+            <br/>
+            <br/>
+            <br/>
             <NytChallenge />
             <Location />
             <Clock testProp={testProp} optionalProp={optionalProp} />

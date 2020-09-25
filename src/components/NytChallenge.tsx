@@ -56,7 +56,7 @@ class NytChallenge extends React.Component <{},NytState>{
 
     
     handleSubmit = (event:any) => {
-            //need to add prevent default but getting an error because  of the type
+            
             event.preventDefault();
             this.setState({pageNumber:0});
             this.fetchResults();
@@ -75,11 +75,6 @@ class NytChallenge extends React.Component <{},NytState>{
         this.fetchResults();
         }
       };
-     
-
-    componentWillMount(){
-        this.fetchResults();
-    }
 
     render(){
 
@@ -101,7 +96,7 @@ class NytChallenge extends React.Component <{},NytState>{
                       <button className="submit">Submit search</button>
                   </form> 
                     {
-                      this.state.result.length > 0 ? <NytChallengeIndex result={ this.state.result } pageNumber={ this.state.pageNumber } /> : null 
+                      this.state.result.length > 0 ? <NytChallengeIndex result={ this.state.result } pageNumber={this.changePageNumber } /> : null 
                     }
               </div>
             </div>
